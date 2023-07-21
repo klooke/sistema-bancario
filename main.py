@@ -12,13 +12,27 @@ Operações:
 
 >> """
 
+balance = 0.00
+
 print(MENU)
 
 while True:
 
     option = input(OPERATIONS)
     if option == "d":
-        print(">> Menu de Deposito <<")
+        
+        try:
+            deposit = float(input(">> Digite o quanto você vai depositar: "))
+            if deposit <= 0:
+                raise ValueError
+            
+        except ValueError:
+            print(">> Valor inválido. <<")
+
+        else:
+            balance += deposit
+            print(f">> Deposito de R$ {deposit:.2f}, concluido com sucesso! <<")
+
     elif option == "s":
         print(">> Menu de Saque <<")
     elif option == "e":
