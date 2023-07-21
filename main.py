@@ -12,7 +12,11 @@ Operações:
 
 >> """
 
+CASHOUT_LIMIT = 500.00
+DAILY_CASHOUT_LIMIT = 3
+
 balance = 0.00
+daily_cashout_count = 0
 
 print(MENU)
 
@@ -20,7 +24,7 @@ while True:
 
     option = input(OPERATIONS)
     if option == "d":
-        
+
         try:
             deposit = float(input(">> Digite o quanto você vai depositar: "))
             if deposit <= 0:
@@ -31,10 +35,36 @@ while True:
 
         else:
             balance += deposit
-            print(f">> Deposito de R$ {deposit:.2f}, concluido com sucesso! <<")
+            print(f">> Deposito de R$ {deposit:.2f}, concluido com sucesso! consulte o extrato para mais informações. <<")
 
     elif option == "s":
-        print(">> Menu de Saque <<")
+        
+        if daily_cashout_count > DAILY_CASHOUT_LIMIT:
+            print(f">> Limite de saque ({DAILY_CASHOUT_LIMIT}) diário excedido. <<")
+            continue
+        
+        cashout = 0.00
+        try:
+            cashout = float(input(">> Digite o quanto você vai sacar: "))
+            if cashout <= 0:
+                raise ValueError
+            
+            if cashout > CASHOUT_LIMIT:
+                print(f">> Limite por saque é de R$ {CASHOUT_LIMIT:.2f}. <<")
+                continue
+
+            if cashout > balance:                
+                print(f">> Você não tem esse valor R$ {cashout:.2f} em conta, consulte o extrato para mais informações. <<")
+                continue
+
+        except ValueError:
+            print(">> Valor inválido. <<")
+
+        else:
+            balance -= cashout
+            daily_cashout_count += 1
+            print(f">> Saque de R$ {cashout:.2f}, concluido com sucesso! consulte o extrato para mais informações. <<")
+
     elif option == "e":
         print(">> Menu de Extrato <<")
     elif option == "q":
