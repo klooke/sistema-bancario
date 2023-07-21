@@ -17,6 +17,7 @@ DAILY_CASHOUT_LIMIT = 3
 
 balance = 0.00
 daily_cashout_count = 0
+statement = ""
 
 print(MENU)
 
@@ -35,6 +36,7 @@ while True:
 
         else:
             balance += deposit
+            statement += f"\n- Deposito: \t+ R$ {deposit:.2f}"
             print(f">> Deposito de R$ {deposit:.2f}, concluido com sucesso! consulte o extrato para mais informações. <<")
 
     elif option == "s":
@@ -63,10 +65,17 @@ while True:
         else:
             balance -= cashout
             daily_cashout_count += 1
+            statement += f"\n- Saque: \t- R$ {cashout:.2f}"
             print(f">> Saque de R$ {cashout:.2f}, concluido com sucesso! consulte o extrato para mais informações. <<")
 
     elif option == "e":
-        print(">> Menu de Extrato <<")
+        print("\n################# EXTRATO #################")
+        print(statement)
+        print("-------------------------------------------")
+        print(f"- Saldo: \t  R$ {balance:.2f}\n")
+        
+        input(">> Pressione qualquer tecla para continuar << ")
+
     elif option == "q":
         print("\n>> Obrigado por usar nosso sistema, volte sempre! <<\n")
         break
