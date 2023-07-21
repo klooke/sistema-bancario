@@ -1,8 +1,8 @@
-menu = """
-################# Sistema Bancário V1 #################
+MENU = """################# Sistema Bancário V1 #################
 
-Bem-vindo de volta, cliente!
+Bem-vindo de volta, cliente!"""
 
+OPERATIONS = """
 Operações:
 
     (d) - Depositar
@@ -12,16 +12,21 @@ Operações:
 
 >> """
 
-is_first_time = True
+print(MENU)
 
 while True:
-    option = input(menu if is_first_time else ">> ")
-    is_first_time = False
 
-    if option == "q":
+    option = input(OPERATIONS)
+    if option == "d":
+        print(">> Menu de Deposito <<")
+    elif option == "s":
+        print(">> Menu de Saque <<")
+    elif option == "e":
+        print(">> Menu de Extrato <<")
+    elif option == "q":
+        print("\n>> Obrigado por usar nosso sistema, volte sempre! <<\n")
         break
     else:
         print(">> Operação inválida <<")
 
-print("\n>> Obrigado por usar nosso sistema, volte sempre! <<\n")
 print("#######################################################")
