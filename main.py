@@ -41,7 +41,7 @@ while True:
 
     elif option == "s":
         
-        if daily_cashout_count > DAILY_CASHOUT_LIMIT:
+        if daily_cashout_count >= DAILY_CASHOUT_LIMIT:
             print(f">> Limite de saque ({DAILY_CASHOUT_LIMIT}) diário excedido. <<")
             continue
         
