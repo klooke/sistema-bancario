@@ -15,7 +15,19 @@ Operações:
 CASHOUT_LIMIT = 500.00
 DAILY_CASHOUT_LIMIT = 3
 
-user_account = dict(balance=0.00, daily_cashout_count=0, statement="")
+client_account = dict(balance=0.00, daily_cashout_count=0, statement="")
+
+def get_valid_input(msg: str, type):
+    try:
+        result = type(input(">> Digite o quanto você vai depositar: "))
+        if result <= 0:
+            raise ValueError
+        
+    except ValueError:
+        print(">> Valor inválido. <<")
+    
+    else:
+        return result
 
 # Positional only
 def deposit(value: float, account: dict, /):
@@ -45,48 +57,38 @@ def statement(statement, /, *, balance):
     print("-------------------------------------------")
     print(f"- Saldo: \t  R$ {balance:.2f}\n")
 
-print(MENU)
+def operate_account(user_account):
+    while True:
+        option = input(OPERATIONS)
 
-while True:
-    option = input(OPERATIONS)
+        if option == "d":
+            deposit_value = get_valid_input(">> Digite o quanto você vai depositar: ", float)
+        
+            if deposit_value != None:
+                deposit(deposit_value, user_account)
 
-    if option == "d":
-        try:
-            deposit_value = float(input(">> Digite o quanto você vai depositar: "))
-            if deposit_value <= 0:
-                raise ValueError
-            
-        except ValueError:
-            print(">> Valor inválido. <<")
-
-        else:
-            deposit(deposit_value, user_account)
-
-    elif option == "s":        
-        if user_account["daily_cashout_count"] >= DAILY_CASHOUT_LIMIT:
-            print(f">> Limite de saque ({DAILY_CASHOUT_LIMIT}) diário excedido. <<")
-            continue
+        elif option == "s":        
+            if user_account["daily_cashout_count"] >= DAILY_CASHOUT_LIMIT:
+                print(f">> Limite de saque ({DAILY_CASHOUT_LIMIT}) diário excedido. <<")
+                continue
     
-        try:
-            cashout_value = float(input(">> Digite o quanto você vai sacar: "))
-            if cashout_value <= 0:
-                raise ValueError
+            cashout_value = get_valid_input(">> Digite o quanto você vai sacar: ", float)
+        
+            if cashout_value != None:
+                cashout(value=cashout_value, account=user_account)
 
-        except ValueError:
-            print(">> Valor inválido. <<")
+        elif option == "e":
+            statement(user_account["statement"], balance=user_account["balance"])
 
+            input(">> Pressione qualquer tecla para continuar << ")
+
+        elif option == "q":
+            print("\n>> Obrigado por usar nosso sistema, volte sempre! <<\n")
+            break
         else:
-            cashout(value=cashout_value, account=user_account)
+            print(">> Operação inválida <<")
 
-    elif option == "e":
-        statement(user_account["statement"], balance=user_account["balance"])
-
-        input(">> Pressione qualquer tecla para continuar << ")
-
-    elif option == "q":
-        print("\n>> Obrigado por usar nosso sistema, volte sempre! <<\n")
-        break
-    else:
-        print(">> Operação inválida <<")
-
-print("#######################################################")
+if __name__ == "__main__":
+    print(MENU)
+    operate_account(client_account)
+    print("#######################################################")
