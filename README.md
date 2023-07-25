@@ -10,10 +10,10 @@ Criar um sistema bancário com a função depósito, saque e extrato
 
 ## Desafio #2:
 Otimizar o sistema bancário
-  - [] - Modulariza saque, depósito e extrato.
-    - [] - Saque deve ter somente paramentos nomeados.
-    - [] - Deposito deve ter somente paramentos posicionais.
-    - [] - Extrato deve ter paramentos posicionais e nomeados.
+  - [X] - Modulariza saque, depósito e extrato.
+    - [X] - Saque deve ter somente paramentos nomeados.
+    - [X] - Deposito deve ter somente paramentos posicionais.
+    - [X] - Extrato deve ter paramentos posicionais e nomeados.
   - [] - Criar duas novas funções: cadastrar cliente e cadastrar conta bancária.
   - [] - Usuários devem estar em uma lista
     - [] - Nome, Data de Nascimento, CPF (Só numeros em string e único) e Endereço.
