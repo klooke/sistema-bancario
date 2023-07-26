@@ -17,5 +17,5 @@ Otimizar o sistema bancário
   - [] - Criar duas novas funções: cadastrar cliente e cadastrar conta bancária.
   - [X] - Usuários devem estar em uma lista
     - [X] - Nome, Data de Nascimento, CPF (Só numeros em string e único) e Endereço.
-  - [] - Contas devem estar em uma lista.
-    - [] - Agencia (Fixo 0001), numero da conta (Sequencial), cpf do usuário;
+  - [X] - Contas devem estar em uma lista.
+    - [X] - Agencia (Fixo 0001), numero da conta (Sequencial), cpf do usuário;
