@@ -14,7 +14,7 @@ Otimizar o sistema bancário
     - [X] - Saque deve ter somente paramentos nomeados.
     - [X] - Deposito deve ter somente paramentos posicionais.
     - [X] - Extrato deve ter paramentos posicionais e nomeados.
-  - [] - Criar duas novas funções: cadastrar cliente e cadastrar conta bancária.
+  - [X] - Criar duas novas funções: cadastrar cliente e cadastrar conta bancária.
   - [X] - Usuários devem estar em uma lista
     - [X] - Nome, Data de Nascimento, CPF (Só numeros em string e único) e Endereço.
   - [X] - Contas devem estar em uma lista.
